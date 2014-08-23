@@ -1,0 +1,20 @@
+= github-list-starred
+
+Lists GitHub repositories' URLs starred by a given user.
+
+== USAGE
+
+    github-list-starred <GitHub username>
+
+== INSTALLATION
+
+    go get github.com/motemen/github-list-starred
+
+== USING AUTHENTICATED API REQUESTS
+
+If the anonymous API limit is not enough for you, you can set `GITHUB_TOKEN`
+envirnoment variable to your personal API token.
+
+== AUTHOR
+
+motemen <motemen@gmail.com>
