@@ -23,14 +23,14 @@ func main() {
 	for page := 1; ; page++ {
 		options.Page = page
 
-		repositories, res, err := client.Activity.ListStarred(user, options)
+		starredRepos, res, err := client.Activity.ListStarred(user, options)
 		if err != nil {
 			log.Fatalf("ListStarred: %s", err)
 		}
 
 		log.Printf("page: %d/%d", page, res.LastPage)
-		for _, repo := range repositories {
-			fmt.Println(*repo.HTMLURL)
+		for _, starredRepo := range starredRepos {
+			fmt.Println(*starredRepo.Repository.HTMLURL)
 		}
 
 		if page >= res.LastPage {
