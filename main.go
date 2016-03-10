@@ -5,7 +5,8 @@ import (
 	"log"
 	"os"
 
-	"code.google.com/p/goauth2/oauth"
+	"golang.org/x/net/context"
+	"golang.org/x/oauth2"
 
 	"github.com/google/go-github/github"
 )
@@ -43,10 +44,8 @@ func newClient() *github.Client {
 	githubToken := os.Getenv("GITHUB_TOKEN")
 
 	if githubToken != "" {
-		oauthTransport := &oauth.Transport{
-			Token: &oauth.Token{AccessToken: githubToken},
-		}
-		return github.NewClient(oauthTransport.Client())
+		source := oauth2.StaticTokenSource(&oauth2.Token{AccessToken: githubToken})
+		return github.NewClient(oauth2.NewClient(context.Background(), source))
 	}
 
 	return github.NewClient(nil)
