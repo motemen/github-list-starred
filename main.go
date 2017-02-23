@@ -24,7 +24,7 @@ func main() {
 	for page := 1; ; page++ {
 		options.Page = page
 
-		starredRepos, res, err := client.Activity.ListStarred(user, options)
+		starredRepos, res, err := client.Activity.ListStarred(context.Background(), user, options)
 		if err != nil {
 			log.Fatalf("ListStarred: %s", err)
 		}
